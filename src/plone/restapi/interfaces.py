@@ -10,3 +10,11 @@ class IAPIRequest(Interface):
 class ISerializeToJson(Interface):
     """Adapter to serialize a Dexterity object into a JSON object.
     """
+
+class IPut(Interface):
+    """Put method
+    """
+
+class IDelete(Interface):
+    """Delete method
+    """

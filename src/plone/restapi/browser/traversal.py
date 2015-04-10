@@ -5,7 +5,7 @@ from Products.Five.browser import BrowserView
 from ZPublisher.BaseRequest import DefaultPublishTraverse
 
 from plone.dexterity.interfaces import IDexterityContent
-from plone.restapi.interfaces import IAPIRequest
+from plone.rest.interfaces import IAPIRequest
 from plone.restapi.interfaces import ISerializeToJson
 
 from zope.component import adapter
@@ -13,13 +13,6 @@ from zope.interface import alsoProvides
 from zope.interface import implements
 from zope.publisher.interfaces import IPublishTraverse
 
-
-def mark_as_api_request(context, event):
-    """Mark views with application/json as Content-Type with the IAPIRequest
-       interface.
-    """
-    if event.request.getHeader('Content-Type') == 'application/json':
-        alsoProvides(event.request, IAPIRequest)  # pragma: no cover
 
 
 class MarkAsApiRequest(SimpleItem):
