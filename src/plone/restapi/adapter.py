@@ -10,10 +10,11 @@ from plone.app.textfield import RichText
 from plone.app.contenttypes.interfaces import ICollection
 from plone.app.contenttypes.interfaces import IFile
 from plone.app.contenttypes.interfaces import IImage
+from plone.dexterity.utils import iterSchemata
+from plone.dexterity.utils import getAdditionalSchemata
 from plone.namedfile.file import NamedBlobFile
 from plone.namedfile.file import NamedBlobImage
 from plone.restapi.utils import append_json_to_links
-from plone.restapi.utils import get_object_schema
 from plone.restapi.interfaces import ISerializeToJson
 
 from zope.site.hooks import getSite
@@ -21,6 +22,7 @@ from zope.schema import Datetime
 from zope.interface import implementer
 from zope.component import adapter
 from zope.component import getUtility
+from zope.schema import getFields
 
 import json
 
@@ -84,7 +86,11 @@ def SerializeToJson(context):
             }
             for member in context.results()
         ]
-    for title, schema_object in get_object_schema(context):
+    schema_fields = [getFields(x) for x in iterSchemata(context)]
+    schema_fields += [getFields(x) for x in getAdditionalSchemata(context)]
+    for schema_field in schema_fields:
+        title = schema_field.keys()[0]
+        schema_object = schema_field.values()[0]
         value = getattr(context, title, None)
         if value is not None:
             # RichText

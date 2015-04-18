@@ -2,20 +2,8 @@
   "@context": "http://www.w3.org/ns/hydra/context.jsonld", 
   "@id": "http://localhost:55001/plone/newsitem", 
   "@type": "News Item", 
-  "contributors": [], 
-  "creators": [
-    "test_user_1_"
-  ], 
-  "description": "This is a news item", 
-  "effective": "1969-12-31T00:00:00+02:00", 
   "exclude_from_nav": "False", 
-  "expires": "2499-12-31T00:00:00+02:00", 
-  "icon": "++resource++plone.dexterity.item.gif", 
   "image": "http://localhost:55001/plone/newsitem/@@images/image", 
-  "image_caption": "This is an image caption.", 
-  "isPrincipiaFolderish": "0", 
-  "language": "", 
-  "meta_type": "Dexterity Item", 
   "parent": {
     "@id": "http://localhost:55001/plone", 
     "description": "", 
@@ -23,6 +11,5 @@
   }, 
   "relatedItems": [], 
   "rights": "", 
-  "text": "<p>Lorem ipsum</p>", 
-  "title": "My News Item"
+  "text": "<p>Lorem ipsum</p>"
 }
