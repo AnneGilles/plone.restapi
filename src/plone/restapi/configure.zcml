@@ -7,6 +7,13 @@
 
   <includeDependencies package="." />
 
+  <include file="meta.zcml"/>
+  <subscriber
+     for="*
+          zope.app.publication.interfaces.IBeforeTraverseEvent"
+     handler=".events.mark_as_api_request"
+     />
+
   <genericsetup:registerProfile
       name="default"
       title="plone.restapi"

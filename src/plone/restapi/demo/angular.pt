@@ -2,6 +2,7 @@
 <html ng-app="myApp">
 <head>
   <meta charset="utf-8" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.2/angular.min.js"></script>
   <script type="text/javascript">
 
@@ -40,6 +41,7 @@
       $scope.get_successful = '';
       $scope.get_unauthorized = '';
       $scope.get_internal_server_error = '';
+      $scope.patch_siteroot = '';
 
       $http.get('front-page').
         success(function(data, status, headers, config) {
@@ -89,6 +91,18 @@
           $scope.get_internal_server_error = JSON.stringify(data, null, 2);
         });
 
+      $http.put('front-page').
+        success(function(data, status, headers, config) {
+          // this callback will be called asynchronously
+          // when the response is available
+          $scope.patch_siteroot = JSON.stringify(data, null, 2);
+        }).
+        error(function(data, status, headers, config) {
+          // called asynchronously if an error occurs
+          // or server returns response with an error status.
+          $scope.patch_siteroot = JSON.stringify(data, null, 2);
+        });
+
     }
   );
 
@@ -106,5 +120,7 @@
   <pre ng-bind="get_unauthorized"></pre>
   <h4>GET /500-internal-server-error</h4>
   <pre ng-bind="get_internal_server_error"></pre>
+  <h4>PUT /front-page</h4>
+  <pre ng-bind="patch_siteroot"></pre>
 </body>
 </html>
